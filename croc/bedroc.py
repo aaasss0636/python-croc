@@ -1,7 +1,9 @@
 #!/usr/bin/python
+from __future__ import print_function
 import optparse
 import sys
 from croc import SampleCurves, BEDROC, CeilingAC, Curve, ScoredData, Exponential
+
 
 def main(argv):
     parser = optparse.OptionParser("%prog [options] < input.scoreddata > output.curve 2> info")
@@ -28,10 +30,10 @@ def main(argv):
     Wcurve = RESULTS['min_curve']
     bedroc = RESULTS['BEDROC']
 
-    print >>sys.stderr, "Area Under Curve = ", area
-    print >>sys.stderr, "Area Under Best Curve = ", Barea
-    print >>sys.stderr, "Area Under Worst Curve = ", Warea
-    print >>sys.stderr, "BEDROC = ", bedroc
+    print("Area Under Curve = ", area, file=sys.stderr)
+    print("Area Under Best Curve = ", Barea, file=sys.stderr)
+    print("Area Under Worst Curve = ", Warea, file=sys.stderr)
+    print("BEDROC = ", bedroc, file=sys.stderr)
 
     if options.best_file:
         file = open(options.best_file, 'w')
@@ -47,13 +49,14 @@ def main(argv):
         curve.write_to_file(file)
         std_error = std_deviation / ( options.samples ** 0.5 )
 
-        print >>sys.stderr, "Area Under Random Curve (average) = ", average
-        print >>sys.stderr, "Area Under Random Curve (standard deviation) = ", std_deviation
-        print >>sys.stderr, "Area Under Random Curve (standard error) = ", std_error
+        print("Area Under Random Curve (average) = ", average, file=sys.stderr)
+        print("Area Under Random Curve (standard deviation) = ", std_deviation, file=sys.stderr)
+        print("Area Under Random Curve (standard error) = ", std_error, file=sys.stderr)
 
-        print >>sys.stderr, "Random BEDROC (average) = ", (average - Warea) / (Barea - Warea)
-        print >>sys.stderr, "Random BEDROC (standard deviation) = ", std_deviation / (Barea - Warea)
-        print >>sys.stderr, "Random BEDROC (standard error) = ", std_error / (Barea - Warea)
+        print("Random BEDROC (average) = ", (average - Warea) / (Barea - Warea), file=sys.stderr)
+        print("Random BEDROC (standard deviation) = ", std_deviation / (Barea - Warea),
+              file=sys.stderr)
+        print("Random BEDROC (standard error) = ", std_error / (Barea - Warea), file=sys.stderr)
 
 if __name__=="__main__":
     main(sys.argv[1:])

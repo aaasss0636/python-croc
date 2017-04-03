@@ -1,4 +1,5 @@
-import commands 
+from __future__ import print_function
+import commands
 import os
 import time
 import sys
@@ -34,8 +35,8 @@ except ValueError:
 
 VERSION = "1.1."+revset
 
-print warning
-print "assuming that the version is " + VERSION
+print(warning)
+print("assuming that the version is " + VERSION)
 
 setup(name="CROC",
     version=VERSION,
