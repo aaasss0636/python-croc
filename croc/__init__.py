@@ -1,6 +1,9 @@
 import math
 import random
 
+from six.moves import range
+from six.moves import reduce
+
 def SampleCurves(sample, N=500):
     """A convenience function which samples random curves and returns (1) a vertically averaged curve
     of all samples, (2) the average of all the areas of these samples, and (3) the unbiased standard
@@ -11,7 +14,7 @@ def SampleCurves(sample, N=500):
     assert( type(N) == int )
     SUM = Curve([(0,0), (1,0)])
     AREA = []
-    for i in xrange(N):
+    for i in range(N):
         C = sample()
         SUM += C
         AREA.append(C.area())
@@ -112,7 +115,7 @@ class ScoredData:
         ranks = set(positive_ranks)
         assert len(ranks) == len(positive_ranks) #No ties allowed in this constructor!
 
-        scored_labels = [(-n, 1 if n in positive_ranks else 0) for n in xrange(N)]
+        scored_labels = [(-n, 1 if n in positive_ranks else 0) for n in range(N)]
 
         return ScoredData(scored_labels)
  

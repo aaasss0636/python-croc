@@ -72,7 +72,7 @@ With this package, one can easily:
 The docstrings in this module are fairly complete and the scripts provide simple access to
 the most common functions. Further documentation can be found at http://swami.wustl.edu/CROC/
 """,
-    requires=["sympy"],
+    requires=["sympy", "six"],
     author="S. Joshua Swamidass",
     url="http://swami.wustl.edu/CROC",
     author_email="swamidass@gmail.com",
