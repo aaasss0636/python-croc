@@ -1,5 +1,5 @@
 from __future__ import print_function
-import commands
+import subprocess
 import os
 import time
 import sys
@@ -12,7 +12,7 @@ vfname=os.path.join('.','VERSION')
 try:
     # Always try to determine the version using svnversion
     warning=""
-    stat,revset=commands.getstatusoutput('hg id -n')
+    stat,revset=subprocess.getstatusoutput('hg id -n')
     if stat != 0:
         raise ValueError("cannot extract version information")
     if revset.find("+") >= 0 :
